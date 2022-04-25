@@ -1,0 +1,66 @@
+{% extends 'base.html' %} {% block title %} Video Player {% endblock title %} {% block addvideo %}
+
+<!-- model -->
+<button type="button" class="btn btn-outline-success btl" data-bs-toggle="modal" data-bs-target="#exampleModal1">Add Video</button>
+
+<!-- Modal -->
+<div class="modal fade " id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content  p-5 bg-secondary">
+            <div class="modal-header">
+                <h5 class="modal-title " id="exampleModalLabel">Add Video</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <h1 class="my-5 text-center">Add Video</h1>
+            <form method="post" action="addvideo" enctype="multipart/form-data">
+                {% csrf_token %} {{form}}
+
+                <button type="submit" class="btn btn-success border-dark text-dark container my-3 ">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock addvideo %} {% block body %}{% load humanize %}
+<div class="container mt-5">
+
+    <form method="get" action="" class="d-flex">
+        <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-success" type="submit">Search</button>
+    </form>
+</div>
+
+
+
+<div class="d-flex flex-row">
+
+    {% for video in videos %}
+
+
+    <div class="col-3 col-sm-3 ">
+
+        <div class="card my-3 border-dark" style="height: 18rem; width: 18rem; margin-left: 5%;">
+            <a href="video/{{video.sno}}">
+                <!-- <img src="{{video.cover.url}}" class="card-img-top" alt="..."> -->
+                <video name='video' class="card-img-top" muted autoplay="false" poster="{{video.cover.url}}">
+                    <source src="{{video.video.url}}" type="video/mp4"></source>
+                </video>
+            </a>
+
+            <div class="card-body text-light" style="background-color:#181818">
+
+                <a href="video/{{video.sno}}" class="mb-5 text-light" style="text-decoration: none;">
+                    <h5 class="card-text mb-4">{{video.title|title|truncatechars:50}}</h5>
+                </a>
+                <span style="font-size: .8rem;" class="mb-4 ml-4 d-inline">{{video.name|title}}</span>
+                <span style="font-size: .8rem;" class="mb-4 p-0 d-inline">-</span>
+                <span style="font-size: .8rem;" class="mb-4 d-inline">{{video.date|naturaltime}}</span>
+            </div>
+        </div>
+    </div>
+
+    {% if forloop.counter|divisibleby:4 %}
+</div>
+<div class="d-flex flex-row">
+
+    {% endif %} {% endfor %}
+</div> {% endblock body %}

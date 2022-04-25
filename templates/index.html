@@ -1,0 +1,57 @@
+{% extends 'base.html' %} {% block title %} iPlayer {% endblock title %} {% block body %}
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="/media/myslide/slide1.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Create Account</h5>
+                <p>Make Own Profile</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="/media/myslide/slide5.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Login</h5>
+                <p>Upload Video & Audio And Enjoy</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="/media/myslide/slide4.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Visit</h5>
+                <p>Your Own Profile And Make Your Contant Private Or Public</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+	  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	  <span class="visually-hidden">Previous</span>
+	</button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+	  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	  <span class="visually-hidden">Next</span>
+	</button>
+</div>
+
+<div class="row align-items-md-stretch my-5 container">
+    <div class="col-md-6">
+        <div class="h-100 p-5 text-dark bg-secondary rounded-3">
+            <h2>Video Player</h2>
+            <p>Visit Video Player And See Awesome Videos If You Upload Your Video So Simply Click Add video Button And Fill Some Input Field And Add Video.</p>
+            <a href="vplayer" class="btn btn-outline-dark">Video Player</a>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="h-100 p-5 text-dark bg-secondary border rounded-3">
+            <h2>Audio Player</h2>
+            <p>Visit Audio Player And See Awesome Audio If You Upload Your Audio So Simply Click Add Audio Button And Fill Some Input Field And Add Audio.</p>
+            <a href="aplayer" class="btn btn-outline-dark">Audio Player</a>
+        </div>
+    </div>
+</div>
+{% endblock body %}

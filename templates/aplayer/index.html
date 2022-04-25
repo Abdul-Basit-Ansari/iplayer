@@ -1,0 +1,123 @@
+{% extends 'base.html' %} {% block title %} Audio Player {% endblock title %}{% load widget_tweaks %} {% block addvideo %} {%load crispy_forms_tags %} {% load widget_tweaks %}
+
+
+<button type="button" class="btn btn-outline-success btl" data-bs-toggle="modal" data-bs-target="#exampleModal1">Add Audio</button>
+
+<!-- Modal -->
+<div class="modal fade " id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content  p-5 bg-secondary">
+            <div class="modal-header">
+                <h5 class="modal-title " id="exampleModalLabel">Add Audio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <h1 class="my-5 text-center">Add Audio</h1>
+            <form method="post" action="addaudio" enctype="multipart/form-data">
+                <!-- use by widget_tweaks{{ form.title|add_class:'form_control container' }} -->
+                {% csrf_token %} {{form}}
+                <!-- {% csrf_token %} {{form|crispy}} -->
+
+                <!-- <div class="input-group mb-3">
+
+                    <input type="file" name="cover" class="form-control file input-group-text text-success bg-dark border-success" id="inputGroupFile01">
+                </div>
+                <div class="input-group mb-3">
+
+                    <input type="text" name="title" class="form-control  text-right text-success bg-dark border-success" placeholder="Enter Audio Title Here" required>
+                </div>
+                <div class="input-group mb-3">
+
+                    <input type="file" name="audio" class="form-control file input-group-text text-success bg-dark border-success" id="inputGroupFile01">
+                </div> -->
+                <button type="submit" class="btn btn-success border-dark text-dark container my-3 ">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock addvideo %}{% block body %}
+
+<!-- model -->
+<style>
+    .bta {
+        margin-left: -50%;
+    }
+    
+    audio {
+        /*border-radius: 90px;*/
+        width: 250px;
+        height: 45px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    
+    audio::-webkit-media-controls-timeline {
+        background-color: turquoise;
+        border-radius: 25px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    
+    audio::-webkit-media-controls-volume-slider {
+        border-radius: 25%;
+        background-color: brown;
+        /* border-radius: 25px 0px 0px 25px; */
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    /* TIME */
+    
+    audio::-webkit-media-controls-time-remaining-display {
+        color: red;
+    }
+    
+    audio::-webkit-media-controls-current-time-display {
+        color: cyan;
+        margin-left: 3%;
+    }
+    
+    audio::-webkit-media-controls-play-button {
+        /* color: violet; */
+        padding-left: 2%;
+        background-color: turquoise;
+        border-radius: 100%;
+    }
+    /* mute button */
+    
+    audio::-webkit-media-controls-mute-button {
+        border-radius: 100%;
+        background-color: brown;
+        border-radius: 100%;
+    }
+    /* this is bg black */
+    
+    audio::-webkit-media-controls-panel {
+        background-color: black;
+    }
+</style>
+
+
+
+
+<div class="container mt-5">
+
+    <form method="get" action="" class="d-flex">
+        <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-success" type="submit">Search</button>
+    </form>
+</div>
+
+{% load humanize %} {% for audio in audios %}
+
+<div class='row container py-3 bg-secondary mx-5 border border-dark rounded-3  d-inline-block my-5'>
+    <img src="{{audio.cover.url}}" class=" mb-4" width="40" height="300" alt="">
+    <h3 class="mb-4 d-block">{{audio.title|title}}</h3>
+    <span class="mb-4 ml-4 d-inline">{{audio.name|title}}</span>
+    <span class="mb-4 p-0 d-inline">-</span>
+    <span class="mb-4 d-inline">{{audio.date|naturaltime}}</span>
+    <audio controls class="my-3">
+        <source src="{{audio.audio.url}}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+</div>
+
+{% endfor %} {% endblock body %}
