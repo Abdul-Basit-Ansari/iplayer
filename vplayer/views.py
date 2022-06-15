@@ -22,11 +22,10 @@ def vplayer(request):
 		if s:
 			se = s.strip()
 			search = se.title()
-			print(search)
 			user = request.user
 			v= Mvideo.objects.filter( Q(title__icontains=search) | Q(name__icontains=search)& Q(ondelete=False)&Q(onhide=False))
 			dic={'videos':v}	
-			# print("GET")
+			
 		
 			return render(request,'vplayer/index.html',dic)
 	videos = Mvideo.objects.filter(onhide=False,ondelete = False).order_by('-date')
@@ -40,7 +39,7 @@ def vplayer(request):
 		return render(request,"vplayer/index.html",dic)
 
 	dic = {'videos':videos,'user':u}
-	# print("hgretgfd")
+	
 	return render(request,"vplayer/index.html",dic)
 def aplayer(request):
 	u = request.user
@@ -52,11 +51,11 @@ def aplayer(request):
 		if s:
 			se = s.strip()
 			search = se.title()
-			print(search)
+			
 			user = request.user
 			a= Maudio.objects.filter( Q(title__icontains=search) | Q(name__icontains=search)& Q(ondelete=False)&Q(onhide=False))
 			dic={'audios':a}	
-			# print("GET")
+			
 		
 			return render(request,'aplayer/index.html',dic)
 	audios = Maudio.objects.filter(onhide=False,ondelete = False)
@@ -86,7 +85,7 @@ def signup(request):
 			email = request.POST.get('email')
 			pass1 = request.POST.get('pass1')
 			pass2 = request.POST.get('pass2')
-			# print(fname,lname,uname,phone,email,pass1,pass2)
+			
 			if pass1 != pass2 :
 				messages.error(request,"Passwords Is Diffrent")
 			user = 	User.objects.create_user(uname,email,pass1)
@@ -96,7 +95,7 @@ def signup(request):
 			user.save()
 			messages.success(request,"Your Account Is Created")
 			return redirect("index")
-	print("signup")
+	
 
 	dic={'user':u}
 	if not u.is_authenticated:
@@ -111,7 +110,7 @@ def ulogin(request):
 			uname=request.POST.get('uname')
 			password=request.POST.get('password')
 			user=authenticate(username= uname, password=password)
-			print(uname,password)
+			
 			if user is not None:
 				login(request, user)
 				messages.success(request, "Successfully Logged In")
@@ -202,12 +201,12 @@ def uprofile(request):
 		if s:
 			se = s.strip()
 			search = se.title()
-			print(search)
+			
 			user = request.user
 			v= Mvideo.objects.filter(Q(user=user)& Q(title__icontains=search) & Q(ondelete=False))
 			a= Maudio.objects.filter(Q(user=user)& Q(title__icontains=search) & Q(ondelete=False))
 			dic={'videos':v,'audios':a}	
-			print("GET")
+			
 		
 			return render(request,'vplayer/profile.html',dic)
 
