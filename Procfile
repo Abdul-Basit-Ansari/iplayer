@@ -1,1 +1,1 @@
-web: gunicorn plyer.wsgi
+web: gunicorn player.wsgi
