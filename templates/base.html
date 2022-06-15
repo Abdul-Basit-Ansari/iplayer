@@ -44,22 +44,44 @@
             background-color: #157347;
         }
         
-        .btr {
-            margin-left: -65%;
+        @media (max-width:500px) and (min-width: 30px) {
+            .changecontantca::after {
+                content: "Create";
+            }
+            .changecontantla::after {
+                content: "Login";
+            }
         }
         
-        .btl {
-            margin-left: -62%;
+        @media screen and (min-width:500px) {
+            .changecontantca::after {
+                content: "Create Account";
+            }
+            .changecontantla::after {
+                content: "Login Account";
+            }
+        }
+        
+        .align-l {
+            display: inline-block;
+            width: 90%;
         }
     </style>
     <nav class="navbar navbar-dark border-bottom bordr-secondary bg-dark">
         <div class="container-fluid ">
-            <a class="mx-4 navbar-brand" href="#">iPlayer</a> {% if not user.is_authenticated %}
 
+            {% if not user.is_authenticated %}
+            <span>
+
+                <a class="mx-4 navbar-brand" href="/">iPlayer</a>
+                
 
 
             <!-- model -->
-            <button type="button" class="btn btn-outline-success btr" data-bs-toggle="modal" data-bs-target="#exampleModal">Create Account</button>
+            <button type="button" class="btn btn-outline-success changecontantca" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+            <!-- model -->
+            <button type="button" class="btn btn-outline-success changecontantla" data-bs-toggle="modal" data-bs-target="#exampleModal1"></button>
+        </span>
 
             <!-- Modal -->
             <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -119,8 +141,7 @@
 
 
 
-            <!-- model -->
-            <button type="button" class="btn btn-outline-success btr" data-bs-toggle="modal" data-bs-target="#exampleModal1">Login Account</button>
+
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -150,8 +171,12 @@
             </div>
 
             {% else %}
-            <a href="/uprofile" class="btn btn-outline-primary btl">Your Profile</a> {% block addvideo %} {% endblock addvideo %}
-            <a href="/logout" class="btn btn-outline-danger btl">Logout</a> {% endif %}
+
+            <span>
+            <a class="mx-4 navbar-brand" href="/">iPlayer</a>
+            <a href="/uprofile" class="btn btn-outline-primary btn-sm-sm">Your Profile</a> {% block addvideo %} {% endblock addvideo %}
+            <a href="/logout" class="btn btn-outline-danger ">Logout</a> {% endif %}
+            </span>
 
 
 
