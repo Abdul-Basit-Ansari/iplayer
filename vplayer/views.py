@@ -141,7 +141,7 @@ def ulogout(request):
 
 def addvideo(request):
 	def form_valid(self, form):
-		form.instance.owner = self.request.user   #<------ This line will do the trick.
+		form.instance.owner = self.request.user   
 		return super.form_valid(form)		
 	u=request.user
 	if  u.is_authenticated:
@@ -268,7 +268,7 @@ def video(request,sno):
 	video=Mvideo.objects.get(sno=sno)
 	comments = Vcomment.objects.filter(video=video)
 	otherv=Mvideo.objects.all()
-	
+
 	dic={'video':video,'otherv':otherv,'comments':comments}
 	return render(request,'vplayer/video.html',dic)	
 

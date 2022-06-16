@@ -59,7 +59,7 @@ class Maudio(models.Model):
 
 	def __str__(self):
 		"""Unicode representation of Maudio."""
-		return self.name
+		return self.user.username + self.title
 
 
 
