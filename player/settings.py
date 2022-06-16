@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-3v51i_&f@mww3es%)0^5m(4y$4d70%gm+pv$thtefba5ij+3di
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["iplayer-youtubeclone.herokuapp.com","localhost"]
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
